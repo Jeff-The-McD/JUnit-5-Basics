@@ -9,6 +9,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -35,7 +37,10 @@ class MathUtilsTest {
 		System.out.println("Cleaning up...");
 	}
 	
+	
 	@Nested
+	@DisplayName("add method")
+	@Tag("Math")
 	class AddTest{
 		@Test
 		@DisplayName("Testing add Method")
@@ -52,7 +57,9 @@ class MathUtilsTest {
 		@DisplayName("when adding two positive numbers")
 		void testAddNegative()
 		{
-			assertEquals(-2,mathUtils.add(-1, -1), "should return the right sum");
+			int expected = -2;
+			int actual = mathUtils.add(-1, -1);
+			assertEquals(expected, actual,()-> "should return sum" + expected+ " ");
 		}
 
 		
@@ -99,7 +106,7 @@ class MathUtilsTest {
 		assertThrows(ArithmeticException.class,()-> mathUtils.divide(1, 0), "divides two numbers, divide by zero number" );
 	}
 	
-	@Test
+	@RepeatedTest(3)
 	void testComputeCircleRadius()
 	{
 		
