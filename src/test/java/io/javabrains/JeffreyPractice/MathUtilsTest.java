@@ -1,7 +1,9 @@
 package io.javabrains.JeffreyPractice;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -44,6 +46,13 @@ class MathUtilsTest {
 	}
 	
 	@Test
+	@DisplayName("when adding two positive numbers")
+	void testAddNegative()
+	{
+		assertEquals(-1,mathUtils.add(-1, -1), "should return the right sum");
+	}
+	
+	@Test
 	void testSubtract()
 	{
 		int expected = 2;
@@ -56,34 +65,40 @@ class MathUtilsTest {
 	
 	
 	@Test
+	@DisplayName("multiply method")
 	void testMultiply()
 	{
 		int expected = 20;
 		int actual = mathUtils.multiply(4, 5);
 		
-		assertEquals(expected,actual, "The multiply method should multiply two numbers ");
+		//assertEquals(expected,actual, "The multiply method should multiply two numbers ");
+		assertAll(
+				()->assertEquals(4,mathUtils.multiply(2, 2)),
+				()->assertEquals(0,mathUtils.multiply(2, 0)),
+				()->assertEquals(-2,mathUtils.multiply(2, -1))
+				);
 	}
+	
+	
 
 	@Test
 	void testDivide()
 	{
-		MathUtils mathUtils = new MathUtils();
+		boolean isServerUp = false;
+		
+		assumeTrue(isServerUp);
+		
+		
 		assertThrows(ArithmeticException.class,()-> mathUtils.divide(1, 0), "divides two numbers, divide by zero number" );
 	}
 	
 	@Test
 	void testComputeCircleRadius()
 	{
-		MathUtils mathUtils = new MathUtils();
+		
 		assertEquals(314.1592653589793,mathUtils.computeCircleRadius(10),"Should return the radius of the circle");
 	}
 	
-	@Test
-	@DisplayName("TDD method. Should not run")
-	void testDisabled()
-	{
-		fail("This test should be disabled ");
-	}
 	
 	
 
