@@ -6,5 +6,10 @@ public class MathUtils {
 	{
 		return a+b;
 	}
+	
+	public double computeCircleRadius(double radius)
+	{
+		return radius*radius*Math.PI;
+	}
 
 }
