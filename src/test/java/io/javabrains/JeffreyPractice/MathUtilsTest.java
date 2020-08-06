@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -30,7 +31,9 @@ class MathUtilsTest {
 	{
 		System.out.println("Cleaning up...");
 	}
+	
 	@Test
+	@DisplayName("Testing add Method")
 	void testAdd() {
 		MathUtils mathUtils = new MathUtils();
 		
@@ -59,7 +62,6 @@ class MathUtilsTest {
 		int actual = mathUtils.multiply(4, 5);
 		
 		assertEquals(expected,actual, "The multiply method should multiply two numbers ");
-		
 	}
 
 	@Test
@@ -75,6 +77,14 @@ class MathUtilsTest {
 		MathUtils mathUtils = new MathUtils();
 		assertEquals(314.1592653589793,mathUtils.computeCircleRadius(10),"Should return the radius of the circle");
 	}
+	
+	@Test
+	@DisplayName("TDD method. Should not run")
+	void testDisabled()
+	{
+		fail("This test should be disabled ");
+	}
+	
 	
 
 }
