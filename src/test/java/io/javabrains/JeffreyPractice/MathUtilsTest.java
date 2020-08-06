@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 
@@ -34,23 +35,29 @@ class MathUtilsTest {
 		System.out.println("Cleaning up...");
 	}
 	
-	@Test
-	@DisplayName("Testing add Method")
-	void testAdd() {
-		MathUtils mathUtils = new MathUtils();
+	@Nested
+	class AddTest{
+		@Test
+		@DisplayName("Testing add Method")
+		void testAdd() {
+			MathUtils mathUtils = new MathUtils();
+			
+			int expected = 2;
+			int actual = mathUtils.add(1, 1);
+			
+			assertEquals(expected,actual, "The add method should add two numbers");
+		}
 		
-		int expected = 2;
-		int actual = mathUtils.add(1, 1);
+		@Test
+		@DisplayName("when adding two positive numbers")
+		void testAddNegative()
+		{
+			assertEquals(-2,mathUtils.add(-1, -1), "should return the right sum");
+		}
+
 		
-		assertEquals(expected,actual, "The add method should add two numbers");
 	}
 	
-	@Test
-	@DisplayName("when adding two positive numbers")
-	void testAddNegative()
-	{
-		assertEquals(-1,mathUtils.add(-1, -1), "should return the right sum");
-	}
 	
 	@Test
 	void testSubtract()
