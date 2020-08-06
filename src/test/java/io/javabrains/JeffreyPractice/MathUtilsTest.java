@@ -1,12 +1,23 @@
 package io.javabrains.JeffreyPractice;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MathUtilsTest {
 
 	MathUtils mathUtils;
+	
+	@BeforeAll
+	void beforeAllInits()
+	{
+		System.out.println("This needs to run before all");
+	}
 	
 	@BeforeEach
 	void init()
@@ -14,6 +25,11 @@ class MathUtilsTest {
 		mathUtils = new MathUtils();
 	}
 	
+	@AfterEach()
+	void cleanUp()
+	{
+		System.out.println("Cleaning up...");
+	}
 	@Test
 	void testAdd() {
 		MathUtils mathUtils = new MathUtils();
